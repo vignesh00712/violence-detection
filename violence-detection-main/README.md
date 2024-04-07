@@ -83,5 +83,5 @@ For further enhancements like: Batch processing support for speedup, return of
 multiple suggestions, threshold fine-tuning for specific data, ect. contact me:
 
 My
-Linkedin: [Soso Sukhitashvili](https://www.linkedin.com/in/soso-sukhitashvili/)
+Linkedin: [Vignesh Kumar M](linkedin.com/in/vignesh-kumar-m-36050a26b)
 
