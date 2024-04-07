@@ -1,83 +1,86 @@
-# violence-detection
-Violence Detection is a cutting-edge technology leveraging machine learning and computer vision to automatically identify aggressive or harmful behavior in various media forms. This GitHub repository hosts the codebase and resources essential for implementing and deploying violence detection systems across different applications and platforms.
+# Table of Contents
 
-Table of Contents
+[Introduction](#introduction)
 
-    Introduction
-    How to Run
-    Results
-    Future Work
+[How to Run](#howtorun)
 
+[Resutls](#results)
+
+[Further Work](#work)
 <a name="introduction"/>
-Introduction
 
-This repository contains code for a Deep Learning-based algorithm designed to detect violence in both indoor and outdoor environments. The algorithm achieves high accuracy in identifying various scenarios, including fights, fires, car crashes, and more.
+# Introduction
 
-To enable detection of additional scenarios, you can simply add descriptive text labels for the scenarios in the settings.yaml file under the labels key. Currently, the model can detect 16 scenarios plus one default "Unknown" label. You have the flexibility to customize, add, or remove labels based on your specific use case.
+This repo presents code for Deep Learning based algorithm for
+**detecting violence** in indoor or outdoor environments. The algorithm can
+detect following scenarios with high accuracy: fight, fire, car crash and even
+more.
 
-The model is trained on a diverse range of data, with the primary task being to predict similar vectors for both images and descriptive text that effectively describe the scene depicted in the image. As a result, the model demonstrates good generalization capabilities for detecting various scenarios when provided with appropriate textual information about the scene of interest.
-<a name="how-to-run"/>
-How to Run
-Installation
+To detect other scenarios you have to add **descriptive text label** of a
+scenario in `settings.yaml` file under `labels` key. At this moment model can
+detect 16`+1` scenarios, where one is default `Unknown` label. You can change,
+add or remove labels according to your use case. The model is trained on wide
+variety of data. The task for the model at training was to predict similar
+vectors for image and text that describes well a scene on the image. Thus model
+can generalize well on other scenarios too if you provide proper textual
+information about a scene of interest.
+<a name="howtorun"/>
 
-First, install the required dependencies:
+# How to Run
 
-pip install -r requirements.txt
+First install requirements:
+`pip install -r requirements.txt`
 
-Testing the Model
+To test the model you can either run:
+`python run.py --image-path ./data/7.jpg`
 
-You can test the model using one of the following methods:
+Or you can test it through web app:
+`streamlit run app.py`
 
-    Run the model on a single image:
+Or you can see the example code in `tutorial.ipynb` jupyter notebook
 
-    arduino
+Or incorporate this model in your project using this code:
 
-python run.py --image-path ./data/7.jpg
+```python
+from model import Model
+import cv2
 
-Test the model through the web application:
+model = Model()
+image = cv2.imread('./your_image.jpg')
+image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+label = model.predict(image=image)['label']
+print('Image label is: ', label)
+```
 
-arduino
+<a name="results"></a>
 
-streamlit run app.py
+# Results
 
-Use the provided Jupyter notebook tutorial.ipynb for a step-by-step example.
+Below are the resulting videos and images. I used the model to make predictions
+on each frame of the videos and print model's predictions on the left side of
+frame of saved videos. In case of images, titles are model's predictions. You
+can find code that produces that result in `tutorial.ipynb` jupyter notebook.
 
-Integrate the model into your project using the provided code snippet:
+![Result video](./results/output_fire.gif)
 
-python
+![Result video](./results/output_fight.gif)
 
-    from model import Model
-    import cv2
+### Result Images
 
-    model = Model()
-    image = cv2.imread('./your_image.jpg')
-    image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
-    label = model.predict(image=image)['label']
-    print('Image label is: ', label)
+![Result image](./results/3.jpg)
+![Result image](./results/9.jpg)
+![Result image](./results/2.jpg)
+![Result image](./results/4.jpg)
+![Result image](./results/10.jpg)
+![Result image](./results/7.jpg)
+![Result image](./results/0.jpg)
 
-<a name="results"/>
-Results
+<a name="work"></a>
 
-Below are the resulting videos and images showcasing the model's predictions. The model was applied to each frame of the videos, and the predictions were printed on the left side of the frame. In the case of images, the titles represent the model's predictions. For the code used to produce these results, refer to the tutorial.ipynb Jupyter notebook.
-Result Videos
+# Further Work
 
-    Result video
-    Result video
+For further enhancements like: Batch processing support for speedup, return of
+multiple suggestions, threshold fine-tuning for specific data, ect. contact me:
 
-Result Images
-
-    Result image
-    Result image
-    Result image
-    Result image
-    Result image
-    Result image
-    Result image
-
-<a name="future-work"/>
-Future Work
-
-For further enhancements such as batch processing support for speedup, returning multiple suggestions, fine-tuning thresholds for specific data, etc., please feel free to contact me:
-
-LinkedIn: linkedin.com/in/vignesh-kumar-m-36050a26b
-
+My
+Linkedin: [Vignesh Kumar M]([linkedin.com/in/vignesh-kumar-m-36050a26b/)-https://www.linkedin.com/in/vignesh-kumar-m-36050a26b/
